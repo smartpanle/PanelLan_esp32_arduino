@@ -1,3 +1,5 @@
+#include "sdkconfig.h"
+
 #ifdef CONFIG_IDF_TARGET_ESP32S3
 
 #include <LovyanGFX.hpp>
