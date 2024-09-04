@@ -3,7 +3,7 @@
 #include <lvgl.h>
 #include "PanelLan.h"
 
-// BOARD_SC01_PLUS, BOARD_SC02, BOARD_SC05, BOARD_KC01, BOARD_BC02, BOARD_BC08
+// BOARD_SC01_PLUS, BOARD_SC02, BOARD_SC05, BOARD_KC01, BOARD_BC02, BOARD_SC07
 PanelLan tft(BOARD_SC01_PLUS);
 
 /*Change to your screen resolution*/

@@ -1,7 +1,7 @@
 #include <LovyanGFX.hpp>
 #include <driver/i2c.h>
 #include "../boards.h"
-#include "sc08_pin.h"
+#include "sc07_pin.h"
 #include "Panel_NV3041A.hpp"
 #include "Touch_CST3240.hpp"
 
@@ -127,7 +127,7 @@ class Panel_NV3041A_Spec: public Panel_NV3041A {
     }
 };
 
-Panel_Device* panel_load_from_sc08(board_pins_t* pins) {
+Panel_Device* panel_load_from_sc07(board_pins_t* pins) {
   auto panle = new Panel_NV3041A_Spec();
 
   *pins = {
