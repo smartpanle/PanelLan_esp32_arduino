@@ -16,7 +16,7 @@ using namespace lgfx::v1;
 
 #define PanelLan_SCREEN_BK_FREQ     22222
 
-#define PanelLan_RGB_CLK_FREQ           (24000000)
+#define PanelLan_RGB_CLK_FREQ           (20000000)
 #define PanelLan_RGB_HSYNC_PULSE_WIDTH  (1)
 #define PanelLan_RGB_HSYNC_BACK_PORCH   (87)
 #define PanelLan_RGB_HSYNC_FRONT_PORCH  (20)
