@@ -11,6 +11,7 @@ enum panelLan_board_t {
   BOARD_SC05,             // ZX7D00CE01S
   BOARD_KC01,             // ZX2D10GE01S
   BOARD_BC02,             // ZX3D95CE01S
+  BOARD_SC08,             // ZX7D00CE01S
 #endif
 };
 
