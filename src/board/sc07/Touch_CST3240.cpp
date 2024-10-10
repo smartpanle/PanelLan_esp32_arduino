@@ -116,6 +116,11 @@ namespace lgfx
     
       _I2C_Read(_cfg.i2c_addr, 0xD000, data, 7);
 
+      uint8_t event = (data[0] & 0x04) ? 1 : 0;
+      if (event == 0) {
+        return 0;
+      }
+
       uint8_t touchPoints = data[0] & 0x0F; 
       if (count > touchPoints) { count = touchPoints; }
       for (size_t idx = 0; idx < count; ++idx)
