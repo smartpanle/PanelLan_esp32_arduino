@@ -9,6 +9,7 @@ enum panelLan_board_t {
   BOARD_SC01_PLUS = 0x05, // ZX3D50CE08S
   BOARD_SC02,             // ZX4D30NE01S-UR-4827
   BOARD_SC05,             // ZX7D00CE01S
+  BOARD_SC05_PLUS,        // ZX2D80CECOF-2432
   BOARD_KC01,             // ZX2D10GE01S
   BOARD_BC02,             // ZX3D95CE01S
   BOARD_SC07,             // ZX7D00CE01S

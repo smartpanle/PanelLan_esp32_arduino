@@ -8,6 +8,7 @@ Panel_Device* panel_load_from_sc01(board_pins_t* pins);
 Panel_Device* panel_load_from_sc01_plus(board_pins_t* pins);
 Panel_Device* panel_load_from_sc02(board_pins_t* pins);
 Panel_Device* panel_load_from_sc05(board_pins_t* pins);
+Panel_Device* panel_load_from_sc05_plus(board_pins_t* pins);
 Panel_Device* panel_load_from_bc02(board_pins_t* pins);
 Panel_Device* panel_load_from_kc01(board_pins_t* pins);
 Panel_Device* panel_load_from_sc07(board_pins_t* pins);
@@ -27,6 +28,7 @@ bool PanelLan::init_impl(bool use_reset, bool use_clear) {
     case BOARD_SC01_PLUS: panel = panel_load_from_sc01_plus(&pins); break;
     case BOARD_SC02: panel = panel_load_from_sc02(&pins); break;
     case BOARD_SC05: panel = panel_load_from_sc05(&pins); break;
+    case BOARD_SC05_PLUS: panel = panel_load_from_sc05_plus(&pins); break;
     case BOARD_KC01: panel = panel_load_from_kc01(&pins); break;
     case BOARD_BC02: panel = panel_load_from_bc02(&pins); break;
     case BOARD_SC07: panel = panel_load_from_sc07(&pins); break;
