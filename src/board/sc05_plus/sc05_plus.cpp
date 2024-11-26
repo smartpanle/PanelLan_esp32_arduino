@@ -46,7 +46,79 @@ class Panel_SC05PLUS_Spec: public Panel_ST7789 {
     }
 };
 
+class Touch_GT911_Spec : public ITouch {
+
+public:
+  bool init(void) {
+    lgfx::i2c::init(_cfg.i2c_port, _cfg.pin_sda, _cfg.pin_scl);
+    if (_cfg.pin_int >= 0) {
+      lgfx::lgfxPinMode(_cfg.pin_int, pin_mode_t::input);
+    }
+    return true;
+  }
+
+  void wakeup(void) {
+
+  }
+
+  void sleep(void) {
+
+  }
+
+  uint_fast8_t getTouchRaw(touch_point_t *tp, uint_fast8_t count) override {
+    if ((_cfg.pin_int < 0 || !gpio_in(_cfg.pin_int))) {
+      if (this->_update_data()) {
+        tp->x = ((_readdata[1] & 0x0f) << 8) | _readdata[0];
+        tp->y = ((_readdata[3] & 0x0f) << 8) | _readdata[2];
+        return 1;
+      }
+    }
+    return 0;
+  }
+
+private:
+  enum
+  {
+    max_touch_points = 1
+  };
+  uint8_t _readdata[max_touch_points * 8 + 2]; // 5point * 8byte + 2byte
+
+  bool _writeBytes(const uint8_t* data, size_t len) {
+    return lgfx::i2c::transactionWrite(_cfg.i2c_port, _cfg.i2c_addr, data, len, _cfg.freq).has_value();
+  }
+
+  bool _writeReadBytes(const uint8_t* write_data, size_t write_len, uint8_t* read_data, size_t read_len) {
+    return lgfx::i2c::transactionWriteRead(_cfg.i2c_port, _cfg.i2c_addr, write_data, write_len, read_data, read_len, _cfg.freq).has_value();
+  }
+
+  bool _update_data(void) {
+    uint8_t gt911cmd_getdata[] = { 0x81, 0x4E, 0x00 };
+    _writeReadBytes(gt911cmd_getdata, 2, &_readdata[0], 1);
+    if ((_readdata[0] & 0x80) || (_readdata[0] & 0x0f)) {
+      _writeBytes(gt911cmd_getdata, 3);
+    }
+
+    if ((_readdata[0] & 0x0f) == 0) {
+      return false;
+    }
+
+    uint8_t gt911cmd_getpoint[] = { 0x81, 0x50, 0x00 };
+    _writeReadBytes(gt911cmd_getpoint, 2, &_readdata[0], 4);
+    return true;
+  }
+};
+
+
 Panel_Device* panel_load_from_sc05_plus(board_pins_t* pins) {
+  pinMode(BOARD_RESET_PIN, lgfx::pin_mode_t::output);
+  pinMode(TP_I2C_INT_PIN, lgfx::pin_mode_t::output);
+  gpio_lo(BOARD_RESET_PIN);
+  gpio_lo(TP_I2C_INT_PIN);
+  lgfx::delay(2);
+  gpio_hi(BOARD_RESET_PIN);
+  lgfx::delay(50);
+  pinMode(TP_I2C_INT_PIN, lgfx::pin_mode_t::input);
+
   auto panle = new Panel_SC05PLUS_Spec();
 
   *pins = {
@@ -83,7 +155,7 @@ Panel_Device* panel_load_from_sc05_plus(board_pins_t* pins) {
     auto cfg = panle->config(); //
 
     cfg.pin_cs   = -1;
-    cfg.pin_rst  = BOARD_RESET_PIN;
+    cfg.pin_rst  = -1;
     cfg.pin_busy = -1;
 
     cfg.memory_width     = PanelLan_SCREEN_WIDTH;
@@ -104,22 +176,20 @@ Panel_Device* panel_load_from_sc05_plus(board_pins_t* pins) {
   }
 
   {
-    auto _touch_instance = new Touch_GT911();
+    auto _touch_instance = new Touch_GT911_Spec();
     auto cfg             = _touch_instance->config();
     cfg.x_min            = 0;
     cfg.x_max            = PanelLan_SCREEN_WIDTH;
     cfg.y_min            = 0;
     cfg.y_max            = PanelLan_SCREEN_HIGHT;
-    cfg.bus_shared       = false;
+    cfg.bus_shared       = true;
     cfg.offset_rotation  = 0;
-
     cfg.i2c_port = I2C_NUM_1;
-
     cfg.pin_int = TP_I2C_INT_PIN;
     cfg.pin_sda = TP_I2C_SDA_PIN;
     cfg.pin_scl = TP_I2C_SCL_PIN;
     cfg.pin_rst = TP_I2C_RST_PIN;
-
+    cfg.i2c_addr = 0x5d;
     cfg.freq = 400000;
     _touch_instance->config(cfg);
     panle->setTouch(_touch_instance);
