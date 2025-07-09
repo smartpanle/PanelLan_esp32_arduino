@@ -34,6 +34,7 @@ void setup(void)
 | SC02 | ZX4D30NE01S-UR | RGB | - | rs485 |
 | SC05 | ZX7D00CE01S | RGB | GT911 | - |
 | SC05_PLUS | ZX2D80CECOF | 8080-8bit / ST7789 | GT911 | rs485 |
+| SC05_X | ZX2D80CE02S | 8080-8bit / ST7789 | FT5x06 | rs485 |
 | SC07 | ZX4D30CE08S-4827 | 8080 | CST3240 | rs485, can, buzzer|
 | KC01 | ZX2D10GE01S | RGB | - | ab-encoder, motor |
 | BC02 | ZX3D95CE01S-TR | RGB | FT5x06 | sht20 |
@@ -49,20 +50,22 @@ void setup(void)
 | SC02 | ESP32S3 Dev Module | 16MB QIO 80MHz | OPI PSRAM |
 | SC05 | ESP32S3 Dev Module | 16MB QIO 80MHz | OPI PSRAM |
 | SC05_PLUS | ESP32S3 Dev Module | 16MB QIO 80MHz | QSPI PSRAM |
+| SC05_X | ESP32S3 Dev Module | 8MB QIO 80MHz | QSPI PSRAM |
 | SC07 | ESP32S3 Dev Module | 16MB QIO 80MHz | OPI PSRAM |
 | KC01 | ESP32S3 Dev Module | 16MB QIO 80MHz | OPI PSRAM |
 | BC02 | ESP32S3 Dev Module | 16MB QIO 80MHz | OPI PSRAM |
-
 
 # 依赖库
 
 |名称|版本|介绍|
 |---|---|---|
-|  [LovyanGFX](https://github.com/lovyan03/LovyanGFX)  | >= v1.1.9|SPI LCD graphics library for ESP32  / ESP8266  / SAMD51|
+|  [LovyanGFX](https://github.com/lovyan03/LovyanGFX)  | 1.1.16 |SPI LCD graphics library for ESP32  / ESP8266  / SAMD51. Not currently supported for other versions|
 |  [arduino-esp32](https://github.com/espressif/arduino-esp32)  |  >= v2.0.9|Arduino core for the ESP32, ESP32-S3, etc|
 
 
 # 其他
+设备规格书链接：http://doc.panel-tag.cn/ESP32-S3/board.html
+
 如果遇到RGB屏幕撕裂的情况，参考下面连接：
 https://github.com/esp-arduino-libs/arduino-esp32-sdk
 
