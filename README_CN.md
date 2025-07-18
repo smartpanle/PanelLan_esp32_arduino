@@ -59,9 +59,11 @@ void setup(void)
 
 |名称|版本|介绍|
 |---|---|---|
-|  [LovyanGFX](https://github.com/lovyan03/LovyanGFX)  | 1.1.16 |SPI LCD graphics library for ESP32  / ESP8266  / SAMD51. Not currently supported for other versions|
+|  [LovyanGFX](https://github.com/lovyan03/LovyanGFX)  | >= v1.1.9 |SPI LCD graphics library for ESP32  / ESP8266  / SAMD51. |
 |  [arduino-esp32](https://github.com/espressif/arduino-esp32)  |  >= v2.0.9|Arduino core for the ESP32, ESP32-S3, etc|
 
+# 使用提示
+1. 当屏幕无法点亮时，请检查是否选错设备型号、是否按照 **Board 选择配置** 项设置配置以及**依赖库**的版本是否符合要求。
 
 # 其他
 设备规格书链接：http://doc.panel-tag.cn/ESP32-S3/board.html
