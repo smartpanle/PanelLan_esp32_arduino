@@ -55,8 +55,11 @@ The screen and touch drivers in the repository rely on [LovyanGFX](https://githu
 
 | Name | Version | Description |
 |------|---------|-------------|
-|  [LovyanGFX](https://github.com/lovyan03/LovyanGFX)  | 1.1.16 |SPI LCD graphics library for ESP32  / ESP8266  / SAMD51. Not currently supported for other versions|
+|  [LovyanGFX](https://github.com/lovyan03/LovyanGFX)  | >= v1.1.9 |SPI LCD graphics library for ESP32  / ESP8266  / SAMD51. |
 | [arduino-esp32](https://github.com/espressif/arduino-esp32) | >= v2.0.9 | Arduino core for the ESP32, ESP32-S3, etc |
+
+# Usage tips
+1. When the screen cannot light up, please check if you have selected the wrong device model, if you have configured according to the **Board Configuration** item, and if the version of the **Dependencies** meets the requirements.
 
 # Other
 Equipment specification book link: http://doc.panel-tag.com/ESP32-S3/board.html
