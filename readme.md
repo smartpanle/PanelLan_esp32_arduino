@@ -55,7 +55,7 @@ The screen and touch drivers in the repository rely on [LovyanGFX](https://githu
 
 | Name | Version | Description |
 |------|---------|-------------|
-|  [LovyanGFX](https://github.com/lovyan03/LovyanGFX)  | >= v1.1.9 |SPI LCD graphics library for ESP32  / ESP8266  / SAMD51. |
+|  [LovyanGFX](https://github.com/lovyan03/LovyanGFX)  | >= v1.1.9 |SPI LCD graphics library for ESP32  / ESP8266  / SAMD51 |
 | [arduino-esp32](https://github.com/espressif/arduino-esp32) | >= v2.0.9 | Arduino core for the ESP32, ESP32-S3, etc |
 
 # Usage tips
