@@ -12,7 +12,7 @@ using namespace lgfx::v1;
 #define PANLEE_SCREEN_BK_FREQ 11111
 #define PANLEE_SCREEN_CLK_SPEED (4 * 1000 * 1000)
 
-class Panel_NV3041A_Spec: public Panel_NV3041A {
+class Panel_NV3041A_Spec: public Panel_NV3041A_panellan {
   protected:
     const uint8_t* getInitCommands(uint8_t listno) const override {
       static constexpr uint8_t list0[] = {

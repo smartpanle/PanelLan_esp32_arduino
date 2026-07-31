@@ -26,9 +26,9 @@ namespace lgfx
  {
 //----------------------------------------------------------------------------
 
-  struct Panel_NV3041A  : public Panel_LCD
+  struct Panel_NV3041A_panellan  : public Panel_LCD
   {
-    Panel_NV3041A(void)
+    Panel_NV3041A_panellan(void)
     {
       _cfg.panel_width  = _cfg.memory_width  = 480;
       _cfg.panel_height = _cfg.memory_height = 272;
